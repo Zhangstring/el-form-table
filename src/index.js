@@ -1,5 +1,4 @@
-// import FormTable from './el-form-table/index.vue'
-var FormTable = {}
+import FormTable from './el-form-table/index.vue'
 var formTable = {}
 formTable.install = function (Vue, options) {
   Vue.component('form-table', FormTable)
