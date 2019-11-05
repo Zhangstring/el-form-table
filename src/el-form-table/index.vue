@@ -238,7 +238,7 @@ export default {
         lock: true,
         text: '下载中...'
       });
-      let exportExcelSize = this.$route.query.downSize
+      let exportExcelSize = parseInt(this.$route.query.downSize) || (formOptions && formOptions.exportExcelSize) || 2000
       let page = Math.ceil(this.total / exportExcelSize)
       let promiseArr = []
       for (var i = 1; i <= page; i++) {
