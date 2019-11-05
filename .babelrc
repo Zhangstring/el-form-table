@@ -1,0 +1,16 @@
+{
+  "presets": [
+    ["env", {
+      "modules": false
+    }],
+    "stage-0"
+  ],
+  // 下面指的是在生成的文件中，不产生注释
+  "comments": false,
+  "plugins": ["syntax-dynamic-import"],
+  "env": {
+    "development": {
+      "presets": ["env", "stage-0"],
+    }
+  }
+}

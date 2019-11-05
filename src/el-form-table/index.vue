@@ -238,7 +238,7 @@ export default {
         lock: true,
         text: '下载中...'
       });
-      let exportExcelSize = parseInt(this.$route.query.downSize) || (formOptions && formOptions.exportExcelSize) || 2000
+      let exportExcelSize = parseInt(this.$route.query.downSize) || 2000
       let page = Math.ceil(this.total / exportExcelSize)
       let promiseArr = []
       for (var i = 1; i <= page; i++) {
@@ -249,22 +249,7 @@ export default {
         arr.forEach(item => {
           tableData = tableData.concat(item)
         })
-        let excel = require('./vendor/Export2Excel')
-          let columns = this.columns.filter(column => column.prop !== undefined)
-          let tHeader = columns.map(column => {
-            return column.label
-          })
-          let filterVal = columns.map(column => {
-            return column.prop
-          })
-          const data = this.formatJson(filterVal, tableData);
-          excel.export_json_to_excel({
-            header: tHeader, // 表头 必填
-            data, // 具体数据 必填
-            filename: this.$route.meta.title || '列表数据' // 非必填
-          })
-          loading.close()
-        // import('./vendor/Export2Excel').then(excel => {
+        // let excel = require('./vendor/Export2Excel')
         //   let columns = this.columns.filter(column => column.prop !== undefined)
         //   let tHeader = columns.map(column => {
         //     return column.label
@@ -279,7 +264,22 @@ export default {
         //     filename: this.$route.meta.title || '列表数据' // 非必填
         //   })
         //   loading.close()
-        // })
+        import('./vendor/Export2Excel').then(excel => {
+          let columns = this.columns.filter(column => column.prop !== undefined)
+          let tHeader = columns.map(column => {
+            return column.label
+          })
+          let filterVal = columns.map(column => {
+            return column.prop
+          })
+          const data = this.formatJson(filterVal, tableData);
+          excel.export_json_to_excel({
+            header: tHeader, // 表头 必填
+            data, // 具体数据 必填
+            filename: this.$route.meta.title || '列表数据' // 非必填
+          })
+          loading.close()
+        })
       }).catch(() => {
         loading.close()
         this.$message.error('下载表格失败')
