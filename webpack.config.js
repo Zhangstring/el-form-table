@@ -12,14 +12,6 @@ module.exports = {
     globalObject: 'this'
   },
   plugins: [new VueLoaderPlugin()],
-  externals: {
-    vue: {
-      root: 'Vue',
-      commonjs: 'vue',
-      commonjs2: 'vue',
-      amd: 'vue'
-    }
-  },
   module: {
     rules: [
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
