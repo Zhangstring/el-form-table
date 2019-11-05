@@ -4,7 +4,7 @@
   "description": "",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack --optimize-min-chunk-size 100000000"
   },
   "author": "",
   "license": "ISC",

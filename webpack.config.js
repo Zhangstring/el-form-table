@@ -19,5 +19,31 @@ module.exports = {
       { test: /\.js$/, exclude: /node_modules/, use: 'babel-loader' },
       { test: /\.vue$/, use: 'vue-loader' }
     ]
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 300000,
+      maxSize: 0,
+      minChunks: 2,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '~',
+      automaticNameMaxLength: 30,
+      name: 'hello',
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          name: 'vandors'
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          name: 'defult',
+          reuseExistingChunk: true
+        }
+      }
+    }
   }
 }
