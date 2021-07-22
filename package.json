@@ -32,6 +32,6 @@
   },
   "dependencies": {
     "file-saver": "^2.0.2",
-    "xlsx": "^0.15.1"
+    "xlsx": "^0.17.0"
   }
 }
